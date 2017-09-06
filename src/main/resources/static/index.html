@@ -9,17 +9,6 @@
 </head>
 <body>
 
-<!--<ul id="repeat-object" class="demo">-->
-    <!--<div class="container">-->
-        <!--<div class="row">-->
-            <!--<template v-for="(value, key) in exercises">-->
-                <!--&lt;!&ndash;{{ key }} : {{ value }}&ndash;&gt;-->
-                <!--<card :title="value.title"></card>-->
-            <!--</template>-->
-        <!--</div>-->
-    <!--</div>-->
-<!--</ul>-->
-
 <div id="app">
     <nav class="navbar navbar-inverse">
         <div class="container-fluid">
@@ -34,8 +23,8 @@
             <div class="collapse navbar-collapse" id="myNavbar">
                 <ul class="nav navbar-nav">
                     <li><a href="/">Přehled</a></li>
-                    <li><router-link to="/ulohy">Řešení úloh</router-link></li>
-                    <li><router-link to="/bar">Statistika</router-link></li>
+                    <!--<li><router-link to="/ulohy">Řešení úloh</router-link></li>-->
+                    <!--<li><router-link to="/bar">Statistika</router-link></li>-->
                     <li><a href="#">Stores</a></li>
                     <li><a href="#">Contact</a></li>
                 </ul>
@@ -49,7 +38,12 @@
 
 
     <div class="container">
-        <router-view></router-view>
+        <!--<router-view></router-view>-->
+        <p>{{ count }}</p>
+        <p>
+            <button @click="increment">+</button>
+            <button @click="decrement">-</button>
+        </p>
     </div><br><br>
 
     <!--<footer class="container-fluid text-center"></footer>-->
@@ -59,6 +53,7 @@
 <script src="js/jquery.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
 <script src="js/vue.js"></script>
+<script src="js/vuex.js"></script>
 <script src="js/vue-router.js"></script>
 <script src="js/axios.js"></script>
 <script src="js/scripts.js"></script>
