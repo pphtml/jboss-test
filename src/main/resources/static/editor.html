@@ -1,0 +1,140 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Regular Expression</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<div id="app">
+    <div class="container">
+        <div class="bs-example" data-example-id="text-form-control">
+            <form><input class="form-control" placeholder="Text input" :value="expression" @keyup.stop="updateExpression($event.target.value)"></form>
+
+        </div>
+        <figure class="highlight">
+            <pre><code class="language-html" data-lang="html"><span class="nt">{{expression}}</span></code></pre>
+        </figure>
+    </div>
+
+    <!--<div class="container">-->
+        <!--&lt;!&ndash;<router-view></router-view>&ndash;&gt;-->
+        <!--<p>{{ count }}</p>-->
+        <!--<p>-->
+            <!--<button @click="increment">+</button>-->
+            <!--<button @click="decrement">-</button>-->
+        <!--</p>-->
+    <!--</div><br><br>-->
+    <!--<footer class="container-fluid text-center"></footer>-->
+
+    <div>
+        <p>
+            Lastname: {{ user.lastname }}<br />
+            Firstname: {{ user.firstname }}
+        </p>
+        <p>
+            User object: {{ user }}
+        </p>
+        <!--<input v-model="user.lastname" />-->
+        <!--<input v-model="user.firstname" />-->
+
+        <input :value="user.lastname" @keyup.stop="updateLastname($event.target.value)" />
+        <input :value="user.firstname" @keyup.stop="updateFirstname($event.target.value)"/>
+
+    </div>
+</div>
+
+
+<script src="js/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/vue.js"></script>
+<script src="js/vuex.js"></script>
+<script src="js/vue-router.js"></script>
+<script src="js/axios.js"></script>
+<script src="js/lodash.js"></script>
+<script>
+//    new Vue({
+//        el: '#app',
+//        data: {
+//            input: '# hello'
+//        },
+//        computed: {
+//            compiledMarkdown: function () {
+//                return marked(this.input, { sanitize: true })
+//            }
+//        },
+//        methods: {
+//            update: _.debounce(function (e) {
+//                this.input = e.target.value
+//            }, 300)
+//        }
+//    })
+
+const store = new Vuex.Store({
+    strict: true,
+    state: {
+        count: 0,
+        expression: '',
+        user: {
+            lastname: '',
+            firstname: ''
+        }
+    },
+    mutations: {
+        increment: state => state.count++,
+        decrement: state => state.count--,
+        updateUser: function (state, user) {
+            Object.assign(state.user, user);
+        },
+        updateExpression: (state, expression) => state.expression = expression
+    }
+});
+
+new Vue({
+    el: '#app',
+    store: store,
+    computed: mapGetters) {
+        // mapGetters(),
+        count () {
+            return store.state.count
+        },
+        expression() {
+            return this.$store.state.expression;
+        },
+        user() {
+            return this.$store.state.user;
+        }
+    },
+//    data () {
+//        return {
+//            user: this.$store.state.user
+//        };
+//    },
+    methods: {
+        increment () {
+            console.info('tady');
+            store.commit('increment')
+        },
+        decrement () {
+            store.commit('decrement')
+        },
+        updateExpression(expression) {
+            this.$store.commit('updateExpression', expression);
+        },
+        updateFirstname(firstname) {
+            this.$store.commit('updateUser', {firstname});
+        },
+        updateLastname(lastname) {
+            this.$store.commit('updateUser', {lastname});
+        }
+    }
+});
+
+</script>
+</body>
+</html>
+
+<!--https://ypereirareis.github.io/blog/2017/04/25/vuejs-two-way-data-binding-state-management-vuex-strict-mode/-->

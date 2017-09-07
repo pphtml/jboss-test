@@ -1,0 +1,4 @@
+- automaticky ping 
+- SPA servlet 
+- dev/prod -> webpack -> *.min.js, vue.min.js 
+
