@@ -14,6 +14,9 @@ public class SPAController {
     @Produces(MediaType.TEXT_HTML)
     public Response get() {
         InputStream is = Object.class.getResourceAsStream("/static/index.html");
+
+        // Path path = Paths.get(getClass().getClassLoader().getResource("fileTest.txt")
+
         ResponseBuilder response = Response.ok(is);
         return response.build();
     }

@@ -1,1 +1,1 @@
-web: java $JAVA_OPTS -jar ./target/demo-swarm.jar -Dswarm.http.port=$PORT
+web: java $JAVA_OPTS -jar ./target/jboss-test-swarm.jar -Dswarm.http.port=$PORT
