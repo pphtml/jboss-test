@@ -4,8 +4,8 @@
 <head>
     <meta charset="utf-8">
     <title>Regular Expression</title>
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/css/styles.css">
 </head>
 <body>
 
@@ -18,7 +18,19 @@
         <figure class="highlight">
             <pre><code class="language-html" data-lang="html"><span class="nt">{{expression}}</span></code></pre>
         </figure>
+        <!--<textarea style="padding: 0px; width: 100%; height: 15em; outline: medium none;" autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" wrap="off">-->
+
+        <!--</textarea>-->
     </div>
+
+    <div class="mycontainer">
+        <div class="backdrop">
+            <div class="highlights"></div>
+        </div>
+        <textarea>This demo shows how to highlight bits of text within a textarea. Alright, that's a lie. You can't actually render markup inside a textarea. However, you can fake it by carefully positioning a div behind the textarea and adding your highlight markup there. JavaScript takes care of syncing the content and scroll position from the textarea to the div, so everything lines up nicely. Hit the toggle button to peek behind the curtain. And feel free to edit this text. All capitalized words will be highlighted.</textarea>
+    </div>
+    <button>Toggle Perspective</button>
+
 
     <!--<div class="container">-->
         <!--&lt;!&ndash;<router-view></router-view>&ndash;&gt;-->
@@ -48,13 +60,13 @@
 </div>
 
 
-<script src="js/jquery.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<script src="js/vue.js"></script>
-<script src="js/vuex.js"></script>
-<script src="js/vue-router.js"></script>
-<script src="js/axios.js"></script>
-<script src="js/lodash.js"></script>
+<script src="/static/js/jquery.min.js"></script>
+<script src="/static/js/bootstrap.min.js"></script>
+<script src="/static/js/vue.js"></script>
+<script src="/static/js/vuex.js"></script>
+<script src="/static/js/vue-router.js"></script>
+<script src="/static/js/axios.js"></script>
+<script src="/static/js/lodash.js"></script>
 <script>
 //    new Vue({
 //        el: '#app',
@@ -96,7 +108,7 @@ const store = new Vuex.Store({
 new Vue({
     el: '#app',
     store: store,
-    computed: mapGetters) {
+    computed: {
         // mapGetters(),
         count () {
             return store.state.count
@@ -132,6 +144,80 @@ new Vue({
         }
     }
 });
+
+
+
+
+
+
+
+
+
+
+var $container = $('.container');
+var $backdrop = $('.backdrop');
+var $highlights = $('.highlights');
+var $textarea = $('textarea');
+var $toggle = $('button');
+
+// yeah, browser sniffing sucks, but there are browser-specific quirks to handle that are not a matter of feature detection
+var ua = window.navigator.userAgent.toLowerCase();
+var isIE = !!ua.match(/msie|trident\/7|edge/);
+var isWinPhone = ua.indexOf('windows phone') !== -1;
+var isIOS = !isWinPhone && !!ua.match(/ipad|iphone|ipod/);
+
+function applyHighlights(text) {
+    text = text
+        .replace(/\n$/g, '\n\n')
+        .replace(/[A-Z].*?\b/g, '<mark>$&</mark>');
+
+    if (isIE) {
+        // IE wraps whitespace differently in a div vs textarea, this fixes it
+        text = text.replace(/ /g, ' <wbr>');
+    }
+
+    return text;
+}
+
+function handleInput() {
+    var text = $textarea.val();
+    var highlightedText = applyHighlights(text);
+    $highlights.html(highlightedText);
+}
+
+function handleScroll() {
+    var scrollTop = $textarea.scrollTop();
+    $backdrop.scrollTop(scrollTop);
+
+    var scrollLeft = $textarea.scrollLeft();
+    $backdrop.scrollLeft(scrollLeft);
+}
+
+function fixIOS() {
+    // iOS adds 3px of (unremovable) padding to the left and right of a textarea, so adjust highlights div to match
+    $highlights.css({
+        'padding-left': '+=3px',
+        'padding-right': '+=3px'
+    });
+}
+
+function bindEvents() {
+    $textarea.on({
+        'input': handleInput,
+        'scroll': handleScroll
+    });
+
+    $toggle.on('click', function() {
+        $container.toggleClass('perspective');
+    });
+}
+
+if (isIOS) {
+    fixIOS();
+}
+
+bindEvents();
+handleInput();
 
 </script>
 </body>
