@@ -1,4 +1,8 @@
-- automaticky ping 
-- SPA servlet 
-- dev/prod -> webpack -> *.min.js, vue.min.js 
+- SPA servlet
+  - date / etag ??  dev vs. prod
+  - use min.js variants
+  - modularni system pro .vue ?
 - route - https://codepen.io/patrickodacre/pen/zxwWPO/
+- http://codersblock.com/blog/highlight-text-inside-a-textarea/
+- load font for page
+- bootstrap.min.css.map
