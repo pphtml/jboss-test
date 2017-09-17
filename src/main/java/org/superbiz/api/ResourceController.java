@@ -10,7 +10,8 @@ public abstract class ResourceController {
         final InputStream isFromWar = this.getClass().getClassLoader().getResourceAsStream(resourcePath);
         if (isFromWar == null) {
             try {
-                InputStream isFromFSSource = new FileInputStream("src/main/resources" + resourcePath);
+                final String filename = "src/main/resources" + resourcePath;
+                final InputStream isFromFSSource = new FileInputStream(filename);
                 return isFromFSSource;
             } catch (FileNotFoundException e) {
                 InputStream isFromFSTarget = Object.class.getResourceAsStream(resourcePath);

@@ -9,6 +9,12 @@
     /*border-bottom-color: transparent;*/
 }
 
+mark {
+    border-radius: 3px;
+    color: transparent;
+    background-color: #b1d5e5;
+}
+
 
 /*.nav > li > a:hover,*/
 /*.nav > li > a:focus*/
@@ -20,7 +26,7 @@
 
 
 
-.mycontainer, .backdrop, textarea {
+/*.mycontainer, .backdrop, textarea {
     width: 460px;
     height: 180px;
 }
@@ -68,14 +74,9 @@ textarea {
     transition: transform 1s;
 }
 
-mark {
-    border-radius: 3px;
-    color: transparent;
-    background-color: #b1d5e5;
-}
 
 textarea:focus {
     outline: none;
     box-shadow: 0 0 0 2px #c6aada;
 }
-
+*/
