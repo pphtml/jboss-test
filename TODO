@@ -1,12 +1,9 @@
 - SPA servlet
-  - date / etag ??  dev vs. prod
+  - CDN? dev vs. prod
   - use min.js variants
-  - modularni system pro .vue ?
 - route - https://codepen.io/patrickodacre/pen/zxwWPO/
 - http://codersblock.com/blog/highlight-text-inside-a-textarea/
 - load font for page
 - bootstrap.min.css.map
-- RESTEASY002010: Failed to execute: javax.ws.rs.NotAllowedException: RESTEASY003650:
 - favicon
 - vuetify.js
-- vyhodit /static prefix
