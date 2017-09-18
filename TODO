@@ -9,3 +9,4 @@
 - RESTEASY002010: Failed to execute: javax.ws.rs.NotAllowedException: RESTEASY003650:
 - favicon
 - vuetify.js
+- vyhodit /static prefix
