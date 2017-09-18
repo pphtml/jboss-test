@@ -40,10 +40,6 @@ public class SPAController extends ResourceController {
                         @PathParam("path") String path,
                         @HeaderParam("If-Modified-Since") Date ifModifiedSince,
                         @Context Request request) {
-        if (path.startsWith("static/")) {
-            path = path.substring(7);
-        }
-
         InputSource inputSource = null;
         if (path.length() > 0) {
             // try to read other stuff than index.html
