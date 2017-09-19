@@ -2,21 +2,24 @@
 <html>
 <head>
     <link href='https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons' rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Droid+Sans+Mono" rel="stylesheet">
     <link href="https://unpkg.com/vuetify/dist/vuetify.min.css" rel="stylesheet">
+    <link href="/css/styles.css" rel="stylesheet">
 </head>
 <body>
 <div id="app">
     <v-app>
         <main>
-            <v-container>Hello world</v-container>
+            <v-container>
+                <regex-input></regex-input>
+                <regex-masked></regex-masked>
+            </v-container>
         </main>
     </v-app>
 </div>
- 
 <script src="https://unpkg.com/vue/dist/vue.js"></script>
+<script src="/js/vuex.js"></script>
 <script src="https://unpkg.com/vuetify/dist/vuetify.js"></script>
-<script>
-    new Vue({ el: '#app' })
-</script>
+<script src="/js/scripts-vue.js"></script>
 </body>
 </html>

@@ -1,17 +1,27 @@
 /*CSS styles*/
 
-.nav > li > a {
+/*.nav > li > a {*/
 
+/*}*/
+/*.nav > li > a.active {*/
+    /*color: #fff;*/
+    /*cursor: default;*/
+/*}*/
+
+.regex-input {
+    width: 100%;
+    border: solid black 1px;
+    font-family: 'Droid Sans Mono', monospace;
 }
-.nav > li > a.active {
-    color: #fff;
-    cursor: default;
-    /*border-bottom-color: transparent;*/
+
+.regex-masked {
+    font-family: 'Droid Sans Mono', monospace;
 }
 
 mark {
-    border-radius: 3px;
-    color: transparent;
+    border-radius: 2px;
+    /*color: transparent;*/
+
     background-color: #b1d5e5;
 }
 

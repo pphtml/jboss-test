@@ -14,7 +14,7 @@ public class MediaTypes {
         mapping.put("css", "text/css");
         mapping.put("csv", "text/csv");
         mapping.put("gif", "image/gif");
-        mapping.put("html", "text/html");
+        mapping.put("html", "text/html; charset=utf-8");
         mapping.put("ico", "image/x-icon");
         mapping.put("jpeg", "image/jpeg");
         mapping.put("js", "application/javascript");
