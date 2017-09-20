@@ -8,4 +8,9 @@ public class APIController {
     public Employee employee() {
         return new Employee();
     }
+
+    @Path("regex")
+    public RegexController regex() {
+        return new RegexController();
+    }
 }
