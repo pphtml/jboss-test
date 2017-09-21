@@ -1,16 +1,15 @@
 package org.superbiz.api;
 
+import javax.inject.Inject;
 import javax.ws.rs.Path;
 
 @Path("/api")
 public class APIController {
-    @Path("employees")
-    public Employee employee() {
-        return new Employee();
-    }
+    @Inject
+    private RegexController regexController;
 
     @Path("regex")
     public RegexController regex() {
-        return new RegexController();
+        return regexController;
     }
 }
