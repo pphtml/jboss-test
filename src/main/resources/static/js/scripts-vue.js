@@ -44,10 +44,10 @@ Vue.component('regex-regex', {
             <v-text-field
               label="Regular Expression"
               class="mono-font"
+              spellcheck="false"
               :value="regex" @keyup.stop="updateRegex($event.target.value)"
             ></v-text-field>
           </v-flex>`,
-//<input class="regex-regex" :value="regex" @keyup.stop="updateRegex($event.target.value)">`,
     computed: Vuex.mapGetters(['regex']),
     methods: Vuex.mapActions(['updateRegex'])
 });
