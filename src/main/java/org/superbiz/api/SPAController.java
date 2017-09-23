@@ -46,9 +46,13 @@ public class SPAController extends ResourceController {
             inputSource = getResourceInputSource(path);
         }
 
+        final String actualPath;
         // fallback to index.html
         if (inputSource == null) {
-            inputSource = getResourceInputSource("index.html");
+            actualPath = "index.html";
+            inputSource = getResourceInputSource(actualPath);
+        } else {
+            actualPath = path;
         }
 //        if (ifModifiedSince != null
 //                && ifModifiedSince.equals(inputSource.getLastModified())) {
@@ -61,7 +65,7 @@ public class SPAController extends ResourceController {
                     .cacheControl(CACHE_CONTROL)
                     .build();
         }
-        Optional<String> mediaType = MediaTypes.guessMimeType(path);
+        Optional<String> mediaType = MediaTypes.guessMimeType(actualPath);
         ResponseBuilder response = Response.ok(inputSource.getInputStream(), mediaType.orElse(null));
         if (acceptEncoding != null && acceptEncoding.indexOf("gzip") > -1) {
             response.header("Content-Encoding", "gzip");

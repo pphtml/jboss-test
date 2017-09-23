@@ -15,8 +15,11 @@ const store = new Vuex.Store({
             store.dispatch('computeMaskedOnServer');
         },
         updateSampleText: (state, expression) => {
+            let different = store.state.sampleText != expression;
             store.commit('updateSampleText', expression);
-            store.dispatch('computeMaskedOnServer');
+            if (different) {
+                store.dispatch('computeMaskedOnServer');
+            }
         },
         computeMaskedOnServer: _.throttle((state) => {
                 axios.get('/api/regex', {params: {text: store.state.sampleText, regex: store.state.regex}})
