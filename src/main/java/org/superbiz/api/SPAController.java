@@ -36,11 +36,11 @@ public class SPAController extends ResourceController {
     }
 
     @GET
-    public Response get(@HeaderParam("Accept-Encoding") String acceptEncoding,
-                        @PathParam("path") String path,
-                        @HeaderParam("If-Modified-Since") Date ifModifiedSince,
-                        @Context Request request) {
-        logger.info(String.format("SPAController, path: %s", path));
+    public Response get(@HeaderParam("Accept-Encoding") final String acceptEncoding,
+                        @PathParam("path") final String path,
+                        @HeaderParam("If-Modified-Since") final Date ifModifiedSince,
+                        @Context final Request request) {
+        // logger.info(String.format("SPAController, path: %s", path));
 
         InputSource inputSource = null;
         if (path.length() > 0) {
@@ -49,20 +49,15 @@ public class SPAController extends ResourceController {
         }
 
         final String actualPath;
+        // logger.info(String.format("SPAController, inputSource: %s", inputSource));
         // fallback to index.html
-        logger.info(String.format("SPAController, inputSource: %s", inputSource));
         if (inputSource == null) {
             actualPath = "index.html";
             inputSource = getResourceInputSource(actualPath);
         } else {
             actualPath = path;
         }
-//        if (ifModifiedSince != null
-//                && ifModifiedSince.equals(inputSource.getLastModified())) {
-//            // logger.info(ifModifiedSince.toString());
-//            return Response.notModified().build();
-//        }
-        logger.info(String.format("SPAController, actualPath: %s", actualPath));
+        // logger.info(String.format("SPAController, actualPath: %s", actualPath));
         final ResponseBuilder responseBuilder = request.evaluatePreconditions(inputSource.getLastModified());
         if (responseBuilder != null) {
             return responseBuilder

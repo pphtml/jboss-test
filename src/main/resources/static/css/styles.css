@@ -19,7 +19,7 @@ mark {
     right: 0px;
     top: 0px;
     bottom: 0px;
-    z-index: 1000;
+    z-index: 3;
 }
 .sample-text textarea {
     background-color: transparent;
@@ -29,7 +29,7 @@ mark {
 }
 
 .highlights {
-    z-index: 999;
+    z-index: 2;
     color: transparent;
     top: 22px;
     left: 0px;

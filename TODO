@@ -1,3 +1,4 @@
+- result wrapper / interceptor
 - SPA servlet
   - CDN? dev vs. prod
   - use min.js variants
@@ -16,3 +17,4 @@
 - firefox / - The character encoding of the HTML document was not declared. The document will render with garbled text in some browser configurations if the document contains characters from outside the US-ASCII range. The character encoding of the page must be declared in the document or in the transfer protocol.
 - http://localhost:8080/api/regex?regex=
 - error messages propagation
+- https://dennis-xlc.gitbooks.io/restful-java-with-jax-rs-2-0-2rd-edition/en/part1/chapter1/introduction_to_rest.html
