@@ -66,9 +66,9 @@ public class SPAController extends ResourceController {
         }
         Optional<String> mediaType = MediaTypes.guessMimeType(actualPath);
         ResponseBuilder response = Response.ok(inputSource.getInputStream(), mediaType.orElse(null));
-        if (acceptEncoding != null && acceptEncoding.indexOf("gzip") > -1) {
-            response.header("Content-Encoding", "gzip");
-        }
+//        if (acceptEncoding != null && acceptEncoding.indexOf("gzip") > -1) {
+//            response.header("Content-Encoding", "gzip");
+//        }
 //        EntityTag eTag = new EntityTag(Integer.valueOf(inputSource.getLastModified().hashCode()).toString());
         return response
                 .lastModified(inputSource.getLastModified())

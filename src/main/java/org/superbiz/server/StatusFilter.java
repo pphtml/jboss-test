@@ -16,12 +16,16 @@ public class StatusFilter implements ContainerResponseFilter {
     Logger logger;
 
     @Override
-    public void filter(ContainerRequestContext containerRequestContext, ContainerResponseContext containerResponseContext) throws IOException {
+    public void filter(final ContainerRequestContext containerRequestContext,
+                       final ContainerResponseContext containerResponseContext) throws IOException {
         if (containerResponseContext.getStatus() == 200) {
             if (Response.class.equals(containerResponseContext.getEntityClass())) {
                 Response response = (Response) containerResponseContext.getEntity();
                 if (response.getError() != null) {
-                    containerResponseContext.setStatus(javax.ws.rs.core.Response.Status.BAD_REQUEST.getStatusCode());
+                    int statusCode = response.getError().getStatusCode() != null
+                            ? response.getError().getStatusCode().getStatusCode()
+                            : javax.ws.rs.core.Response.Status.BAD_REQUEST.getStatusCode();
+                    containerResponseContext.setStatus(statusCode);
                 }
             }
         }

@@ -49,7 +49,10 @@ public class JbossTestServer {
     }
 
     private static String getServerPort() {
-        String port = System.getenv("PORT");
+        String port = System.getProperty("swarm.http.port");
+        if (port == null) {
+            port = System.getenv("PORT");
+        }
         return  port != null ? port : DEFAULT_PORT;
     }
 

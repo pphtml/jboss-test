@@ -1,18 +1,46 @@
-- result wrapper / interceptor
 - SPA servlet
   - CDN? dev vs. prod
   - use min.js variants
-- route - https://codepen.io/patrickodacre/pen/zxwWPO/
-- http://codersblock.com/blog/highlight-text-inside-a-textarea/
-- favicon
 - testy regex service
 - POST regex
+- generate sample data - several variants
+- prihlaseni se
+- http://localhost:9090/api/regex?text=aaaaaaaaaaaaaaaaaaaaaaaaaaX&regex=%5E(a%2B)%2B$     (^(a+)+$)
+
 - line breaks
 - tags in text
-- generate sample data - several variants
-- Interceptor - Content-Encoding gzip
-- prihlaseni se
-- detekce velke zateze serveru
-- http://localhost:8080/api/regex?regex=
-- error messages propagation
+- favicon
+- error messages propagation to GUI
+
 - https://dennis-xlc.gitbooks.io/restful-java-with-jax-rs-2-0-2rd-edition/en/part1/chapter1/introduction_to_rest.html
+- https://www.freeformatter.com/java-regex-tester.html
+- http://www.baeldung.com/jackson-optional
+- route - https://codepen.io/patrickodacre/pen/zxwWPO/
+- http://codersblock.com/blog/highlight-text-inside-a-textarea/
+- https://www.n-k.de/riding-the-nashorn/
+- https://mvnrepository.com/artifact/org.webjars.npm/webpack/3.5.5
+- https://github.com/systemjs/systemjs/issues/1113
+- https://www.namekdev.net/2016/04/the-state-of-importing-node-js-modules-into-java/
+- https://objectpartners.com/2016/04/22/using-webpack-with-gradle/
+- https://www.juptr.io/juptrblogs/_e67b0d1e-98f8-44fb-b431-845005f36129.html
+- https://dzone.com/articles/learn-reactjs-a-little-at-a-time-part-2
+- https://webpack.github.io/docs/usage.html
+- http://www.oracle.com/technetwork/articles/java/jf14-nashorn-2126515.html
+- https://github.com/arrwhidev/nashorn-webpack-react-redux-boilerplate?files=1
+
+NashornScriptEngineFactory factory = new NashornScriptEngineFactory();
+ScriptEngine engine = factory.getEngine(new String[] { "-scripting" });
+
+/usr/lib/jvm/java-1.8.0-openjdk.x86_64/bin/jrunscript -Dnashorn.args="--language=es6 -scripting"
+
+load('moment.min.js');
+
+https://raw.githubusercontent.com/nodyn/jvm-npm/master/src/main/javascript/jvm-npm.js
+
+load('jvm-npm.js');
+
+
+var moment = require('moment.min.js');
+print(moment());
+load('nashorn-polyfill.js');
+
