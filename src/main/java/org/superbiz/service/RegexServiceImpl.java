@@ -12,7 +12,7 @@ import java.util.regex.Pattern;
 @ApplicationScoped
 public class RegexServiceImpl implements RegexService {
     @Inject
-    RegexCPU regexCPU;
+    TaskExecutor taskExecutor;
 
     private static final long TIMEOUT = 200;
 
@@ -34,7 +34,7 @@ public class RegexServiceImpl implements RegexService {
         };
 
         try {
-            String result = regexCPU.compute(task, TIMEOUT);
+            String result = taskExecutor.compute(task, TIMEOUT);
             return result;
         } catch (TimeoutException e) {
             throw new ComputationExceededException(String.format("Timeout %d exceeded for matching of " +

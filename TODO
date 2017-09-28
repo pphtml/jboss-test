@@ -2,7 +2,6 @@
   - CDN? dev vs. prod
   - use min.js variants
 - testy regex service
-- POST regex
 - generate sample data - several variants
 - prihlaseni se
 - http://localhost:9090/api/regex?text=aaaaaaaaaaaaaaaaaaaaaaaaaaX&regex=%5E(a%2B)%2B$     (^(a+)+$)
@@ -17,30 +16,29 @@
 - http://www.baeldung.com/jackson-optional
 - route - https://codepen.io/patrickodacre/pen/zxwWPO/
 - http://codersblock.com/blog/highlight-text-inside-a-textarea/
-- https://www.n-k.de/riding-the-nashorn/
-- https://mvnrepository.com/artifact/org.webjars.npm/webpack/3.5.5
-- https://github.com/systemjs/systemjs/issues/1113
-- https://www.namekdev.net/2016/04/the-state-of-importing-node-js-modules-into-java/
-- https://objectpartners.com/2016/04/22/using-webpack-with-gradle/
-- https://www.juptr.io/juptrblogs/_e67b0d1e-98f8-44fb-b431-845005f36129.html
-- https://dzone.com/articles/learn-reactjs-a-little-at-a-time-part-2
-- https://webpack.github.io/docs/usage.html
-- http://www.oracle.com/technetwork/articles/java/jf14-nashorn-2126515.html
-- https://github.com/arrwhidev/nashorn-webpack-react-redux-boilerplate?files=1
+- POST regex
 
-NashornScriptEngineFactory factory = new NashornScriptEngineFactory();
-ScriptEngine engine = factory.getEngine(new String[] { "-scripting" });
+h1[data-v-20168b67], h2[data-v-20168b67] {
+    font-weight: normal;
+    background-color: blue;
+}
 
-/usr/lib/jvm/java-1.8.0-openjdk.x86_64/bin/jrunscript -Dnashorn.args="--language=es6 -scripting"
+<style type="text/css">
+h1[data-v-20168b67], h2[data-v-20168b67] {
+  font-weight: normal;
+  background-color: blue
+}
+ul[data-v-20168b67] {
+  list-style-type: none;
+  padding: 0;
+}
+li[data-v-20168b67] {
+  display: inline-block;
+  margin: 0 10px;
+}
+a[data-v-20168b67] {
+  color: coral;
+}
+</style>
 
-load('moment.min.js');
-
-https://raw.githubusercontent.com/nodyn/jvm-npm/master/src/main/javascript/jvm-npm.js
-
-load('jvm-npm.js');
-
-
-var moment = require('moment.min.js');
-print(moment());
-load('nashorn-polyfill.js');
-
+<h1 data-v-20168b67=""></h1>

@@ -15,9 +15,12 @@ import java.util.logging.Logger;
 
 @Stateless
 @ApplicationScoped
-public class RegexCPU {
+public class TaskExecutorImpl implements TaskExecutor {
     @Inject
     Logger logger;
+
+//    @Resource
+//    private ManagedExecutorService executor;
 
     private ExecutorService executor;
 
@@ -28,13 +31,13 @@ public class RegexCPU {
         logger.info("After Executor Pool initialized");
     }
 
+    @Override
     public <T> T compute(Callable<T> task, long timeout) throws TimeoutException {
         try {
             final Future<T> future = executor.submit(task);
             return future.get(timeout, TimeUnit.MILLISECONDS);
         } catch (TimeoutException e) {
-            throw new RuntimeException(e);
-            //throw e;
+            throw e;
         } catch (InterruptedException | ExecutionException e) {
             throw new RuntimeException(e);
         }

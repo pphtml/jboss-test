@@ -134,6 +134,22 @@ Vue.component('sample-data-generator', {
     methods: Vuex.mapActions(['generateSampleData'])
 });
 
+Vue.component('kalendar', {
+    template: `<v-layout row wrap>
+    <v-flex md12 lg8 class="hidden-xs-only">
+      <v-date-picker v-model="picker2" landscape></v-date-picker>
+    </v-flex>
+    <v-flex md12 lg4>
+        <div>Dnes je {{picker2}}</div>
+    </v-flex>
+  </v-layout>`,
+    data () {
+        return {
+            picker2: null
+        }
+    }
+});
+
 new Vue({
     el: '#app',
     store: store,
