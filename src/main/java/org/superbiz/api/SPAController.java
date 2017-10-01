@@ -36,7 +36,7 @@ public class SPAController extends ResourceController {
     }
 
     @GET
-    public Response get(@HeaderParam("Accept-Encoding") final String acceptEncoding,
+    public Response get(//@HeaderParam("Accept-Encoding") final String acceptEncoding,
                         @PathParam("path") final String path,
                         @HeaderParam("If-Modified-Since") final Date ifModifiedSince,
                         @Context final Request request) {

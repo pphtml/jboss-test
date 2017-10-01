@@ -8,8 +8,10 @@ import java.util.regex.Pattern;
 
 public class MediaTypes {
     public static final String JSON_ENCODED = "application/json; charset=utf-8";
+    public static final String JAVASCRIPT = "application/javascript; charset=utf-8";
 
     private static final Map<String, String> mapping = new HashMap<>();
+
     static {
         mapping.put("css", "text/css");
         mapping.put("csv", "text/csv");
