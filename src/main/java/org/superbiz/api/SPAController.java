@@ -1,5 +1,6 @@
 package org.superbiz.api;
 
+import org.superbiz.util.InputSource;
 import org.superbiz.util.MediaTypes;
 
 import javax.inject.Inject;
@@ -7,15 +8,11 @@ import javax.ws.rs.GET;
 import javax.ws.rs.HeaderParam;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
 import javax.ws.rs.core.CacheControl;
 import javax.ws.rs.core.Context;
-import javax.ws.rs.core.EntityTag;
-import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Request;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.ResponseBuilder;
-import java.io.InputStream;
 import java.util.Date;
 import java.util.Optional;
 import java.util.logging.Logger;

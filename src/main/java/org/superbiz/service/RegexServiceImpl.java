@@ -11,8 +11,12 @@ import java.util.regex.Pattern;
 @Stateless
 @ApplicationScoped
 public class RegexServiceImpl implements RegexService {
-    @Inject
     TaskExecutor taskExecutor;
+
+    @Inject
+    public RegexServiceImpl(TaskExecutor taskExecutor) {
+        this.taskExecutor = taskExecutor;
+    }
 
     private static final long TIMEOUT = 200;
 
