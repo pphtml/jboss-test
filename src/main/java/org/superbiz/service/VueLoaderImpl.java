@@ -39,7 +39,7 @@ public class VueLoaderImpl implements VueLoader {
     public String compile(final InputSource inputSource) {
         final VueParts component = loadComponent(inputSource);
         final String scriptPart = component.getScript();
-        final String parsedScript = vueScriptParser.parse(scriptPart);
+        final String parsedScript = vueScriptParser.parse(scriptPart, component.getTemplate());
         return parsedScript;
     }
 }
