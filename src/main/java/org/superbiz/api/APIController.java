@@ -14,6 +14,9 @@ public class APIController {
     @Inject
     private VueLoaderController vueLoaderController;
 
+    @Inject
+    private NodeDepsController nodeDepsController;
+
     @Path("regex")
     public RegexController regex() {
         return regexController;
@@ -27,5 +30,10 @@ public class APIController {
     @Path("vue-loader")
     public VueLoaderController vueLoaderController() {
         return vueLoaderController;
+    }
+
+    @Path("node-deps")
+    public NodeDepsController nodeDepsController() {
+        return nodeDepsController;
     }
 }

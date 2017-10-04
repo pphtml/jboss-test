@@ -5,6 +5,7 @@
 - generate sample data - several variants
 - prihlaseni se
 - http://localhost:9090/api/regex?text=aaaaaaaaaaaaaaaaaaaaaaaaaaX&regex=%5E(a%2B)%2B$     (^(a+)+$)
+- list node modules
 
 - line breaks
 - tags in text
@@ -42,3 +43,9 @@ a[data-v-20168b67] {
 </style>
 
 <h1 data-v-20168b67=""></h1>
+
+
+https://eclairjs.github.io/eclairjs-nashorn/docs/jsdoc/eclairjs_jvm-npm_jvm-npm.js.html
+
+var path = require("path");
+var localWebpack = require.resolve(path.join(process.cwd(), "node_modules", "webpack", "bin", "webpack.js"));
