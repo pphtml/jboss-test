@@ -6,6 +6,8 @@
 - prihlaseni se
 - http://localhost:9090/api/regex?text=aaaaaaaaaaaaaaaaaaaaaaaaaaX&regex=%5E(a%2B)%2B$     (^(a+)+$)
 - list node modules
+- targetPath
+- Response.java uses unchecked or unsafe operations Xlint:unchecked
 
 - line breaks
 - tags in text
