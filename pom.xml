@@ -35,6 +35,9 @@
 
         <resources>
             <resource>
+                <directory>src/main/resources</directory>
+            </resource>
+            <resource>
                 <directory>src/main/frontend</directory>
                 <includes>
                     <include>node_modules/**/*</include>
