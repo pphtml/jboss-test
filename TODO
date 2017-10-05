@@ -48,6 +48,11 @@ a[data-v-20168b67] {
 
 
 https://eclairjs.github.io/eclairjs-nashorn/docs/jsdoc/eclairjs_jvm-npm_jvm-npm.js.html
+https://dzone.com/articles/vuejs-single-file-javascript-components-in-thenbsp
 
 var path = require("path");
 var localWebpack = require.resolve(path.join(process.cwd(), "node_modules", "webpack", "bin", "webpack.js"));
+
+cd src/main/frontend
+$JDK9_HOME/bin/jjs --language=es6 -scripting
+load('./java-node-bridge.js');
