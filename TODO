@@ -61,6 +61,18 @@ var path = require('path');
 $JDK9_HOME/bin/jjs --language=es6 -scripting
 load('./src/main/frontend/java-node-bridge.js');
 var webpack = require('./webpack');
+var compiler = webpack({entry: './entry', output: {filename: 'abc.out.js'}});
+compiler.compile(()=>print('ahoj'));
+
+
+
+const conf = new WebpackConf()
+
+conf.setEntry(path.resolve('./src/entry.js'))
+conf.setOutputPath(path.resolve(__dirname, 'build'))
+conf.setOutputFilename('bundle.js')
+
+const compiler = webpack(conf.config)
 
 
 
