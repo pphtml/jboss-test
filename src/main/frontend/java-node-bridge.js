@@ -60,12 +60,20 @@ module = (typeof module === 'undefined') ? {} : module;
     }
 
     Module._load = function _load(file, parent, core, main) {
+        //print(1)
         var module = new Module(file, parent, core);
+        //print(2)
         var body = readFile(module.filename, module.core);
+        //print(3)
         var dir = new File(module.filename).getParent();
+        body = body.replace(/\"\$\{\"/g, '"$\\{"');
+        //print(4)
+        // print(body)
         var func = new Function('exports', 'module', 'require', '__filename', '__dirname', body);
+        //print(5)
         func.apply(module,
             [module.exports, module, module.require, module.filename, dir]);
+        //print(6)
         module.loaded = true;
         module.main = main;
         return module.exports;
@@ -145,7 +153,7 @@ module = (typeof module === 'undefined') ? {} : module;
     };
 
     Require.root = System.getProperty('user.dir');
-    Require.NODE_PATH = '/home/petr/IdeaProjects/jboss-test/src/main/frontend/node_modules';
+    Require.NODE_PATH = 'src/main/frontend/node_modules';
 
     function findRoots(parent) {
         var r = [];

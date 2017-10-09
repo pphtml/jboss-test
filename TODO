@@ -21,35 +21,12 @@
 - http://codersblock.com/blog/highlight-text-inside-a-textarea/
 - POST regex
 
-h1[data-v-20168b67], h2[data-v-20168b67] {
-    font-weight: normal;
-    background-color: blue;
-}
-
-<style type="text/css">
-h1[data-v-20168b67], h2[data-v-20168b67] {
-  font-weight: normal;
-  background-color: blue
-}
-ul[data-v-20168b67] {
-  list-style-type: none;
-  padding: 0;
-}
-li[data-v-20168b67] {
-  display: inline-block;
-  margin: 0 10px;
-}
-a[data-v-20168b67] {
-  color: coral;
-}
-</style>
-
-<h1 data-v-20168b67=""></h1>
 
 
 https://eclairjs.github.io/eclairjs-nashorn/docs/jsdoc/eclairjs_jvm-npm_jvm-npm.js.html
 https://github.com/nodyn/jvm-npm/blob/master/src/main/javascript/jvm-npm.js
 https://dzone.com/articles/vuejs-single-file-javascript-components-in-thenbsp
+https://dzone.com/articles/the-lazy-developers-guide-to-authentication-with-v-1
 
 var path = require("path");
 var localWebpack = require.resolve(path.join(process.cwd(), "node_modules", "webpack", "bin", "webpack.js"));
@@ -63,6 +40,8 @@ load('./src/main/frontend/java-node-bridge.js');
 var webpack = require('./webpack');
 var compiler = webpack({entry: './entry', output: {filename: 'abc.out.js'}});
 compiler.compile(()=>print('ahoj'));
+
+node/node node_modules/webpack/bin/webpack ./entry.js bundle.js
 
 
 
@@ -81,4 +60,7 @@ var SourceMapConsumer = require("source-map").SourceMapConsumer;
 
 
 
-load('./jvm-npm.js');
+    "webpack-dev-server": "^2.9.1"
+
+webpack: Using compiler.parser is deprecated.\n" +
+"Use compiler.plugin(\"compilation\", function(compilation, data) {\n  data.normalModuleFactory.plugin(\"parser\", function(parser, options) { parser.plugin(); });\n}); instead
