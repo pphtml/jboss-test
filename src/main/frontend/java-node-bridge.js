@@ -327,5 +327,7 @@ console.info = print;
 console.log = print;
 console.warn = print;
 console.error = print;
+clearInterval = () => {console.info('clearInterval() called');};
+setInterval = () => {console.info('setInterval() called');};
 
 '';

@@ -9,7 +9,7 @@ module.exports = {
         basename: (path) => Paths.get(path).getFileName().toString(),
         delimiter: System.getProperty('path.separator'),
         dirname: (path) => Paths.get(path).getParent().toString(),
-        join: (paths) => (paths) => Array.isArray(paths) ? (paths.length > 1 ? Paths.get(paths[0], paths.slice(1)).toString() : Paths.get(paths[0]).toString()) : Paths.get(paths).toString()
+        join: (paths) => Array.isArray(paths) ? (paths.length > 1 ? Paths.get(paths[0], paths.slice(1)).toString() : Paths.get(paths[0]).toString()) : Paths.get(paths).toString()
     },
     fs: {
         mkdir: (path, mode, callback) => {
