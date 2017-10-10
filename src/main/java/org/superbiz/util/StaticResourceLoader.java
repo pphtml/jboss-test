@@ -14,11 +14,11 @@ public class StaticResourceLoader {
     }
 
     public static InputSource load(final String path, final Date defaultLastModified) {
-        final String resourcePath = "/static/" + path;
+        final String resourcePath = "/" + path;
         final InputStream isFromWar = StaticResourceLoader.class.getClassLoader().getResourceAsStream(resourcePath);
         if (isFromWar == null) {
             try {
-                final String filename = "src/main/resources" + resourcePath;
+                final String filename = "src/main/frontend" + resourcePath;
                 final InputStream isFromFSSource = new FileInputStream(filename);
                 final Path pathIO = Paths.get(filename);
                 final BasicFileAttributes fileAttributes = Files.readAttributes(pathIO, BasicFileAttributes.class);

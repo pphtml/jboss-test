@@ -27,6 +27,7 @@ https://eclairjs.github.io/eclairjs-nashorn/docs/jsdoc/eclairjs_jvm-npm_jvm-npm.
 https://github.com/nodyn/jvm-npm/blob/master/src/main/javascript/jvm-npm.js
 https://dzone.com/articles/vuejs-single-file-javascript-components-in-thenbsp
 https://dzone.com/articles/the-lazy-developers-guide-to-authentication-with-v-1
+https://eclipsesource.com/blogs/2016/07/20/running-node-js-on-the-jvm/
 
 var path = require("path");
 var localWebpack = require.resolve(path.join(process.cwd(), "node_modules", "webpack", "bin", "webpack.js"));
@@ -64,3 +65,7 @@ var SourceMapConsumer = require("source-map").SourceMapConsumer;
 
 webpack: Using compiler.parser is deprecated.\n" +
 "Use compiler.plugin(\"compilation\", function(compilation, data) {\n  data.normalModuleFactory.plugin(\"parser\", function(parser, options) { parser.plugin(); });\n}); instead
+
+
+node/node node/node_modules/npm
+node/node node_modules/webpack/bin/webpack.js
