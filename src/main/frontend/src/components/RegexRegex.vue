@@ -10,8 +10,9 @@
 </template>
 
 <script>
+    import Vuex from 'vuex'
+
     export default {
-        name: 'regex-regex',
         computed: Vuex.mapGetters(['regex']),
         methods: Vuex.mapActions(['updateRegex'])
     }

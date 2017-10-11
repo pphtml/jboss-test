@@ -14,23 +14,18 @@ public class WebpackProcess {
 //        new StreamGobbler(p.getInputStream()).start();
     }
 
-    public static void runWebpack() throws InterruptedException, IOException {
-        new ProcessBuilder()
-                .command("node/node",
-                        "node_modules/webpack/bin/webpack.js",
-                        "--watch")
-                .inheritIO()
-                .directory(new File("src/main/frontend"))
-                .start()
-                .waitFor();
-    }
-
-    public static void runWebpackLoop() {
+    public static void runWebpack() {
         logger.info("Starting Webpack process");
 
-        // TODO loop is missing
         try {
-            runWebpack();
+            new ProcessBuilder()
+                    .command("node/node",
+                            "node_modules/webpack/bin/webpack.js",
+                            "--watch")
+                    .inheritIO()
+                    .directory(new File("src/main/frontend"))
+                    .start()
+                    .waitFor();
         } catch (InterruptedException | IOException e) {
             e.printStackTrace();
             logger.log(Level.SEVERE, "Webpack process stopped", e);

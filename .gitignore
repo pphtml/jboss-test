@@ -7,4 +7,5 @@ src/main/frontend/etc
 src/main/frontend/yarn.lock
 src/main/frontend/package-lock.json
 src/main/frontend/dist/
+src/main/resources/static/dist/
 

@@ -3,8 +3,9 @@
 </template>
 
 <script>
+    import Vuex from 'vuex'
+
     export default {
-        name: 'sample-data-generator',
         methods: Vuex.mapActions(['generateSampleData'])
     }
 </script>

@@ -1,6 +1,5 @@
 package org.superbiz.service;
 
-import javax.ejb.DependsOn;
 import javax.ejb.Stateless;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;

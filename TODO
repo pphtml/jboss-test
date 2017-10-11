@@ -1,5 +1,6 @@
 - zmenit na priklad se store
 - prekomponentit
+- lodash - import jenom pouzivany
 - dev vs. prod
 - source maps
 - testy regex service

@@ -48,7 +48,7 @@ public class JbossTestServer {
         //new ZipExporterImpl(archive).exportTo(new File("/tmp/test.war"), true);
         container.deploy(archive);
 
-        final Runnable task = () -> { WebpackProcess.runWebpackLoop(); };
+        final Runnable task = () -> { WebpackProcess.runWebpack(); };
         task.run();
     }
 

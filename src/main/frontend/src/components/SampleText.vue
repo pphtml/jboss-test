@@ -11,8 +11,9 @@
 </template>
 
 <script>
+    import Vuex from 'vuex'
+
     export default {
-        name: 'sample-text',
         computed: Vuex.mapGetters(['sampleText']),
         methods: Vuex.mapActions(['updateSampleText'])
     }

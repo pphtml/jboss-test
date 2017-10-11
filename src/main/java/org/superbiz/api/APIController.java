@@ -11,12 +11,6 @@ public class APIController {
     @Inject
     private ProcessorCountController processorCountController;
 
-    @Inject
-    private VueLoaderController vueLoaderController;
-
-    @Inject
-    private NodeDepsController nodeDepsController;
-
     @Path("regex")
     public RegexController regex() {
         return regexController;
@@ -25,15 +19,5 @@ public class APIController {
     @Path("proc-count")
     public ProcessorCountController processorCountController() {
         return processorCountController;
-    }
-
-    @Path("vue-loader")
-    public VueLoaderController vueLoaderController() {
-        return vueLoaderController;
-    }
-
-    @Path("node-deps")
-    public NodeDepsController nodeDepsController() {
-        return nodeDepsController;
     }
 }

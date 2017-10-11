@@ -3,6 +3,9 @@
 </template>
 
 <script>
-    name: 'sample-masked',
-    computed: Vuex.mapGetters(['markedText'])
+    import Vuex from 'vuex'
+
+    export default {
+        computed: Vuex.mapGetters(['markedText'])
+    }
 </script>
