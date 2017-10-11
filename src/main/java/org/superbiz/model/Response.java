@@ -14,11 +14,11 @@ public class Response<T> {
     }
 
     public static <T> Response<T> of(T result) {
-        return new Response(result, null);
+        return new Response<>(result, null);
     }
 
     public static <T> Response<T> error(ProcessingError error) {
-        return new Response(null, error);
+        return new Response<>(null, error);
     }
 
     public T getResult() {

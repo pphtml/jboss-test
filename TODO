@@ -1,13 +1,12 @@
-- SPA servlet
-  - CDN? dev vs. prod
-  - use min.js variants
+- zmenit na priklad se store
+- prekomponentit
+- dev vs. prod
+- source maps
 - testy regex service
 - generate sample data - several variants
 - prihlaseni se
 - http://localhost:9090/api/regex?text=aaaaaaaaaaaaaaaaaaaaaaaaaaX&regex=%5E(a%2B)%2B$     (^(a+)+$)
-- list node modules
-- targetPath
-- Response.java uses unchecked or unsafe operations Xlint:unchecked
+- webpack-dev-server needed?
 
 - line breaks
 - tags in text
@@ -20,6 +19,7 @@
 - route - https://codepen.io/patrickodacre/pen/zxwWPO/
 - http://codersblock.com/blog/highlight-text-inside-a-textarea/
 - POST regex
+- Swarm EJB - https://dzone.com/articles/deploying-ejb-jars-to-a-wildfly-swarm-microservice
 
 
 

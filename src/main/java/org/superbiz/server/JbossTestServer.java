@@ -2,6 +2,7 @@ package org.superbiz.server;
 
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.asset.EmptyAsset;
+import org.superbiz.util.WebpackProcess;
 import org.wildfly.swarm.Swarm;
 import org.wildfly.swarm.datasources.DatasourcesFraction;
 import org.wildfly.swarm.jaxrs.JAXRSArchive;
@@ -46,6 +47,9 @@ public class JbossTestServer {
         //new ZipExporterImpl(archive).exportTo(new File(archive.getName()), true);
         //new ZipExporterImpl(archive).exportTo(new File("/tmp/test.war"), true);
         container.deploy(archive);
+
+        final Runnable task = () -> { WebpackProcess.runWebpackLoop(); };
+        task.run();
     }
 
     private static String getServerPort() {
