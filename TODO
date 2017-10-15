@@ -1,13 +1,10 @@
-- zmenit na priklad se store
-- prekomponentit
-- lodash - import jenom pouzivany
-- dev vs. prod
-- source maps
+- google font
+- 8.7.0
+- test deploy build
 - testy regex service
 - generate sample data - several variants
 - prihlaseni se
 - http://localhost:9090/api/regex?text=aaaaaaaaaaaaaaaaaaaaaaaaaaX&regex=%5E(a%2B)%2B$     (^(a+)+$)
-- webpack-dev-server needed?
 
 - line breaks
 - tags in text
@@ -23,6 +20,7 @@
 - Swarm EJB - https://dzone.com/articles/deploying-ejb-jars-to-a-wildfly-swarm-microservice
 
 
+- NODE_ENV=production node/node node_modules/webpack/bin/webpack.js --hide-modules
 
 https://eclairjs.github.io/eclairjs-nashorn/docs/jsdoc/eclairjs_jvm-npm_jvm-npm.js.html
 https://github.com/nodyn/jvm-npm/blob/master/src/main/javascript/jvm-npm.js
@@ -68,5 +66,6 @@ webpack: Using compiler.parser is deprecated.\n" +
 "Use compiler.plugin(\"compilation\", function(compilation, data) {\n  data.normalModuleFactory.plugin(\"parser\", function(parser, options) { parser.plugin(); });\n}); instead
 
 
+cd src/main/frontend
 node/node node/node_modules/npm
 node/node node_modules/webpack/bin/webpack.js

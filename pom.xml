@@ -100,7 +100,7 @@
                 </executions>
 
                 <configuration>
-                    <nodeVersion>v8.6.0</nodeVersion>
+                    <nodeVersion>v8.7.0</nodeVersion>
                     <nodeDownloadRoot>https://nodejs.org/dist/</nodeDownloadRoot>
                     <npmDownloadRoot>http://registry.npmjs.org/npm/-/</npmDownloadRoot>
 

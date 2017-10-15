@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import _ from 'lodash'
+import throttle from 'lodash/throttle'
 import axios from 'axios'
 
 Vue.use(Vuex)
@@ -28,7 +28,7 @@ export const store = new Vuex.Store({
                 store.dispatch('computeMaskedOnServer');
             }
         },
-        computeMaskedOnServer: _.throttle((state) => {
+        computeMaskedOnServer: throttle((state) => {
             axios.get('/api/regex', {params: {text: store.state.sampleText, regex: store.state.regex}})
                 .then(response => {
                     //console.info(response.data);

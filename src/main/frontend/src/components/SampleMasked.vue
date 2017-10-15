@@ -9,3 +9,9 @@
         computed: Vuex.mapGetters(['markedText'])
     }
 </script>
+
+<style scoped>
+    div {
+        white-space: pre;
+    }
+</style>
