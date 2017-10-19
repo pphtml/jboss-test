@@ -22,6 +22,7 @@ export const store = new Vuex.Store({
             store.dispatch('computeMaskedOnServer');
         },
         updateSampleText: (state, expression) => {
+            console.info('updating: ' + expression);
             let different = store.state.sampleText != expression;
             store.commit('updateSampleText', expression);
             if (different) {

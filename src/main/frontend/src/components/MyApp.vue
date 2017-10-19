@@ -4,7 +4,7 @@
             <regex-regex></regex-regex>
             <div class="mark-container">
                 <sample-text class="sample-text"></sample-text>
-                <sample-masked class="highlights"></sample-masked>
+                <!--<sample-masked class="highlights"></sample-masked>-->
             </div>
             <sample-data-generator></sample-data-generator>
         </v-container>
