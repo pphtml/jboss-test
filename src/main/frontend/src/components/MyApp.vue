@@ -3,7 +3,9 @@
         <v-container fluid>
             <regex-regex></regex-regex>
             <div class="mark-container">
-                <sample-text class="sample-text"></sample-text>
+                <v-flex xs12>
+                    <sample-text></sample-text>
+                </v-flex>
                 <!--<sample-masked class="highlights"></sample-masked>-->
             </div>
             <sample-data-generator></sample-data-generator>
@@ -47,9 +49,9 @@
         background-color: #b1d5e5;
     }
 
-    .mark-container {
+/*    .mark-container {
         position: relative;
         width: 100%;
         height: 11em;
-    }
+    }*/
 </style>

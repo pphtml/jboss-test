@@ -8,7 +8,7 @@ Vue.use(Vuex)
 export const store = new Vuex.Store({
     state: {
         regex: '',
-        sampleText: '',
+        sampleText: '<mark>Hello</mark> world',
         markedText: ''
     },
     mutations: {
@@ -22,7 +22,7 @@ export const store = new Vuex.Store({
             store.dispatch('computeMaskedOnServer');
         },
         updateSampleText: (state, expression) => {
-            console.info('updating: ' + expression);
+            console.info('STORE updating: ' + expression);
             let different = store.state.sampleText != expression;
             store.commit('updateSampleText', expression);
             if (different) {

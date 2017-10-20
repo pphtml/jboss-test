@@ -29,4 +29,10 @@ public class RegexServiceImplTest {
         final String result = regexService.markRegexOccurences("abc", "abc");
         assertEquals("<mark>abc</mark>", result);
     }
+
+    @Test
+    public void markRegexOccurencesEmptyRegex() throws ComputationExceededException {
+        final String result = regexService.markRegexOccurences("", "Hello world!");
+        assertEquals("Hello world!", result);
+    }
 }

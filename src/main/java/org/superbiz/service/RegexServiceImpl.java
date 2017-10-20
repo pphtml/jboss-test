@@ -30,6 +30,10 @@ public class RegexServiceImpl implements RegexService {
             throw new IllegalArgumentException("Text argument must be provided");
         }
 
+        if (regex.length() == 0) {
+            return text;
+        }
+
         Callable<String> task = () -> {
             final Pattern compiledPattern = Pattern.compile(String.format(String.format("(%s)", regex)));
             final Matcher matcher = compiledPattern.matcher(text);
