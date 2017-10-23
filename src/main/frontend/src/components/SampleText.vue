@@ -8,12 +8,17 @@
     <!--&gt;</v-text-field>-->
 
     <div contenteditable="true" class="mono-font" autocomplete="off" autocorrect="off" autocapitalize="off"
-         spellcheck="false" style="background-color: #eee; overflow: auto; resize: both;" @input="update"
+         spellcheck="false" style="background-color: #eee; overflow: auto; resize: both;" @keyup.stop="update"
     ></div>
 </template>
 
 <script>
     import Vuex from 'vuex'
+    import he from 'he'
+
+    function getPlainText(html) {
+        return html.split(/<\/?mark>/).join('');
+    }
 
     function computePlainTextLength(html) {
         let textOnly = html.split(/<\/?mark>/).join('');
@@ -71,16 +76,17 @@
             this.$el.innerHTML = this.mytext;
             this.$store.subscribe((mutation, state) => {
                 if (mutation.type === 'updateMarkedText') {
-                    console.info('MUTATION!!! ' + mutation.payload);
+                    //console.info('MUTATION!!! ' + replaceOld);
                     //console.info(this.mytext);
                     this.mytext = mutation.payload;
                     let previousPosition = getCaretCharacterOffsetWithin(this.$el);
-                    console.info(previousPosition);
+                    //console.info(previousPosition);
                     let textLengthBefore = this.$el.innerText.length;
-                    if (true || computePlainTextLength(this.mytext) == textLengthBefore) {
+                    let textLengthAfter = computePlainTextLength(this.mytext);
+                    if (textLengthAfter == textLengthBefore) {
+                    //if (!this.$store.getters.waitingForServer) {
                         this.$el.innerHTML = this.mytext;
-                        let textLengthAfter = this.$el.innerText.length;
-                        //console.info(`B: ${textLengthBefore}, A: ${textLengthAfter}`);
+                        // this.$el.innerText.length;
 
                         let selection = window.getSelection();
 
@@ -91,6 +97,8 @@
                             selection.removeAllRanges();
                             selection.addRange(range);
                         }
+                    } else {
+                        console.info(`ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZzz ${this.$store.getters.waitingForServer}`);
                     }
                 }
             })
@@ -98,15 +106,21 @@
         methods: {
             //...Vuex.mapActions(['updateSampleText']),
             update: function(event){
-                this.$store.dispatch('updateSampleText', event.target.innerText);
+                let plainText = getPlainText(event.target.innerHTML);
+                let unescaped = he.decode(plainText);
+                //console.info(`@Update, lenght: ${unescaped}`);
+//                if (event.target.innerText.length != event.target.innerText.trim().length) {
+//                    debugger;
+//                }
+                // this.$store.dispatch('updateSampleText', event.target.innerText);
+                this.$store.dispatch('updateSampleText', unescaped);
             }
         },
         computed:  {
-                // mytext: 'Abc123'
                 mytext: {
                     get: function () {
                         //return 'Def345';
-                        console.info('GET');
+                        //console.info('GET');
                         return this.$store.getters.markedText;
                     },
                     set: function (newValue) {
@@ -116,3 +130,9 @@
             }
     }
 </script>
+
+<style scoped>
+    div {
+        min-height: 5em;
+    }
+</style>

@@ -9,12 +9,14 @@ export const store = new Vuex.Store({
     state: {
         regex: '',
         sampleText: '<mark>Hello</mark> world',
-        markedText: ''
+        markedText: '',
+        waitingForServer: false
     },
     mutations: {
         updateRegex: (state, regex) => state.regex = regex,
         updateSampleText: (state, sampleText) => state.sampleText = sampleText,
-        updateMarkedText: (state, markedText) => state.markedText = markedText
+        updateMarkedText: (state, markedText) => state.markedText = markedText,
+        updateWaitingForServer: (state, waitingForServer) => state.waitingForServer = waitingForServer
     },
     actions: {
         updateRegex: (state, regex) => {
@@ -22,7 +24,7 @@ export const store = new Vuex.Store({
             store.dispatch('computeMaskedOnServer');
         },
         updateSampleText: (state, expression) => {
-            console.info('STORE updating: ' + expression);
+            //console.info(`STORE updating: ${expression}, Length: ${expression.length}`);
             let different = store.state.sampleText != expression;
             store.commit('updateSampleText', expression);
             if (different) {
@@ -30,13 +32,16 @@ export const store = new Vuex.Store({
             }
         },
         computeMaskedOnServer: throttle((state) => {
+            store.commit('updateWaitingForServer', true);
             axios.get('/api/regex', {params: {text: store.state.sampleText, regex: store.state.regex}})
                 .then(response => {
                     //console.info(response.data);
+                    store.commit('updateWaitingForServer', false);
                     store.commit('updateMarkedText', response.data.result.maskedText);
                 }).catch(e => {
-                console.info(`Handling of exception not implemented yet: ${e}`);
-            });
+                    store.commit('updateWaitingForServer', false);
+                    console.info(`Handling of exception not implemented yet: ${e}`);
+                });
         }, 100), // ms
         generateSampleData: (state) => {
             store.commit('updateRegex', '[A-Z]\\w+');
@@ -46,6 +51,7 @@ export const store = new Vuex.Store({
     getters: {
         regex: (state) => state.regex,
         sampleText: (state) => state.sampleText,
-        markedText: (state) => state.markedText
+        markedText: (state) => state.markedText,
+        waitingForServer: (state) => state.waitingForServer
     }
 });
