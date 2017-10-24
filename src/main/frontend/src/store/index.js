@@ -10,13 +10,15 @@ export const store = new Vuex.Store({
         regex: '',
         sampleText: '<mark>Hello</mark> world',
         markedText: '',
-        waitingForServer: false
+        waitingForServer: false,
+        allowedPasteOps: []
     },
     mutations: {
         updateRegex: (state, regex) => state.regex = regex,
         updateSampleText: (state, sampleText) => state.sampleText = sampleText,
         updateMarkedText: (state, markedText) => state.markedText = markedText,
-        updateWaitingForServer: (state, waitingForServer) => state.waitingForServer = waitingForServer
+        updateWaitingForServer: (state, waitingForServer) => state.waitingForServer = waitingForServer,
+        putAllowedPasteOperation: (state, pastedText) => state.allowedPasteOps = [pastedText]
     },
     actions: {
         updateRegex: (state, regex) => {
@@ -37,6 +39,8 @@ export const store = new Vuex.Store({
                 .then(response => {
                     //console.info(response.data);
                     store.commit('updateWaitingForServer', false);
+                    let sampleText = store.state.sampleText;
+                    //if (sampleText.includes(' ')) { debugger; };
                     store.commit('updateMarkedText', response.data.result.maskedText);
                 }).catch(e => {
                     store.commit('updateWaitingForServer', false);
@@ -44,14 +48,21 @@ export const store = new Vuex.Store({
                 });
         }, 100), // ms
         generateSampleData: (state) => {
+            let sampleText = 'First Second third Fourth';
             store.commit('updateRegex', '[A-Z]\\w+');
-            store.dispatch('updateSampleText', 'First Second third Fourth');
+            store.commit('putAllowedPasteOperation', sampleText);
+            store.dispatch('updateSampleText', sampleText);
+        },
+        isPasteOperationAllowed: (state, newText) => {
+            let result = store.state.allowedPasteOps.includes(newText);
+            return result;
         }
     },
     getters: {
         regex: (state) => state.regex,
         sampleText: (state) => state.sampleText,
         markedText: (state) => state.markedText,
-        waitingForServer: (state) => state.waitingForServer
+        waitingForServer: (state) => state.waitingForServer,
+        allowedPasteOps: (state) => state.allowedPasteOps
     }
 });

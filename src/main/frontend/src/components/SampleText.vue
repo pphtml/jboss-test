@@ -7,7 +7,7 @@
             <!--:value="sampleText" @keyup.stop="updateSampleText($event.target.value)"-->
     <!--&gt;</v-text-field>-->
 
-    <div contenteditable="true" class="mono-font" autocomplete="off" autocorrect="off" autocapitalize="off"
+    <div contenteditable="true" class="mono-font sample-text" autocomplete="off" autocorrect="off" autocapitalize="off"
          spellcheck="false" style="background-color: #eee; overflow: auto; resize: both;" @keyup.stop="update"
     ></div>
 </template>
@@ -21,8 +21,7 @@
     }
 
     function computePlainTextLength(html) {
-        let textOnly = html.split(/<\/?mark>/).join('');
-        return textOnly.length;
+        return getPlainText(html).length;
     }
 
     function getCaretCharacterOffsetWithin(element) {
@@ -70,20 +69,36 @@
         return range;
     }
 
+    function textFromTarget(target) {
+        let plainText = getPlainText(target.innerHTML).replace(/\<br\>$/, ' ');
+        let unescaped = he.decode(plainText);
+        return unescaped;
+        //var jq = jQuery(target);
+        //debugger;
+    }
+
     export default {
-        //computed: Vuex.mapGetters(['sampleText']),
         mounted: function(){
             this.$el.innerHTML = this.mytext;
             this.$store.subscribe((mutation, state) => {
                 if (mutation.type === 'updateMarkedText') {
-                    //console.info('MUTATION!!! ' + replaceOld);
+                    console.info('MUTATION!!! ');
                     //console.info(this.mytext);
                     this.mytext = mutation.payload;
                     let previousPosition = getCaretCharacterOffsetWithin(this.$el);
                     //console.info(previousPosition);
-                    let textLengthBefore = this.$el.innerText.length;
-                    let textLengthAfter = computePlainTextLength(this.mytext);
-                    if (textLengthAfter == textLengthBefore) {
+                    let textLengthBefore = textFromTarget(this.$el).length;
+                    let plainText = getPlainText(this.mytext);
+                    let textLengthAfter = plainText.length;
+                    let allowedPaste = this.$store.getters.allowedPasteOps.includes(plainText);
+                    //if (this.$store.getters.allowedPasteOps.includes(this.mytext)) {
+                    //console.info(`INCLUDES ${}`);
+                    //}
+//                    if (this.mytext.includes(' ')) {
+//                        debugger;
+//                    }
+
+                    if (true || allowedPaste || textLengthAfter == textLengthBefore) {
                     //if (!this.$store.getters.waitingForServer) {
                         this.$el.innerHTML = this.mytext;
                         // this.$el.innerText.length;
@@ -98,7 +113,8 @@
                             selection.addRange(range);
                         }
                     } else {
-                        console.info(`ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZzz ${this.$store.getters.waitingForServer}`);
+                        console.info(`ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ`);
+                        debugger;
                     }
                 }
             })
@@ -106,13 +122,17 @@
         methods: {
             //...Vuex.mapActions(['updateSampleText']),
             update: function(event){
-                let plainText = getPlainText(event.target.innerHTML);
-                let unescaped = he.decode(plainText);
-                //console.info(`@Update, lenght: ${unescaped}`);
+                //let plainText = getPlainText(event.target.textContent);
+                let unescaped = textFromTarget(event.target);
+                //console.info(`${plainText} -> ${unescaped}`);
+//                if (plainText.includes('  ')) {
+//                    debugger;
+//                }
+                console.info(`@Update ${unescaped}#, lenght: ${unescaped.length}`);
 //                if (event.target.innerText.length != event.target.innerText.trim().length) {
 //                    debugger;
 //                }
-                // this.$store.dispatch('updateSampleText', event.target.innerText);
+                // this.$store.dispatch('updateSampleText', event.target.innerText); 
                 this.$store.dispatch('updateSampleText', unescaped);
             }
         },
@@ -124,7 +144,7 @@
                         return this.$store.getters.markedText;
                     },
                     set: function (newValue) {
-                        console.info(`Setting newValue ${newValue}`);
+                        console.info(`Setting newValue ${newValue}#`);
                     }
                 }
             }
@@ -134,5 +154,6 @@
 <style scoped>
     div {
         min-height: 5em;
+        empty-cells: show;
     }
 </style>

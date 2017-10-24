@@ -84,3 +84,8 @@ var el = document.createElement('script');
 el.src = "https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.15.0/lodash.min.js";
 el.type = "text/javascript";
 document.head.appendChild(el);
+
+var jq = document.createElement('script');
+jq.src = "https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js";
+document.getElementsByTagName('head')[0].appendChild(jq);
+jQuery.noConflict();
