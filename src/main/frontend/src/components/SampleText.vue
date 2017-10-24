@@ -70,16 +70,21 @@
     }
 
     function textFromTarget(target) {
-        let plainText = getPlainText(target.innerHTML).replace(/\<br\>$/, ' ');
+        //let plainText = getPlainText(target.innerHTML).replace(/\<br\>$/, ' ');
+        let plainText = target.textContent.replace(/\<br\>$/, ' ');
         let unescaped = he.decode(plainText);
         return unescaped;
         //var jq = jQuery(target);
         //debugger;
     }
 
+    function plainToHTML(plainText) {
+        return plainText.replace(/ /g, '&nbsp');
+    }
+
     export default {
         mounted: function(){
-            this.$el.innerHTML = this.mytext;
+            this.$el.innerHTML = plainToHTML(this.mytext);
             this.$store.subscribe((mutation, state) => {
                 if (mutation.type === 'updateMarkedText') {
                     console.info('MUTATION!!! ');
@@ -100,7 +105,7 @@
 
                     if (true || allowedPaste || textLengthAfter == textLengthBefore) {
                     //if (!this.$store.getters.waitingForServer) {
-                        this.$el.innerHTML = this.mytext;
+                        this.$el.innerHTML = plainToHTML(this.mytext);
                         // this.$el.innerText.length;
 
                         let selection = window.getSelection();
@@ -123,6 +128,7 @@
             //...Vuex.mapActions(['updateSampleText']),
             update: function(event){
                 //let plainText = getPlainText(event.target.textContent);
+                console.info(event.target.innerHTML);
                 let unescaped = textFromTarget(event.target);
                 //console.info(`${plainText} -> ${unescaped}`);
 //                if (plainText.includes('  ')) {

@@ -7,9 +7,9 @@ Vue.use(Vuex)
 
 export const store = new Vuex.Store({
     state: {
-        regex: '',
-        sampleText: '<mark>Hello</mark> world',
-        markedText: '',
+        regex: '[A-Z]\\w+',
+        sampleText: '',
+        markedText: 'Abc   ',
         waitingForServer: false,
         allowedPasteOps: []
     },
