@@ -79,7 +79,7 @@
     }
 
     function plainToHTML(plainText) {
-        return plainText.replace(/ /g, '&nbsp');
+        return plainText.replace(/ /g, '&nbsp;');
     }
 
     export default {
@@ -87,7 +87,7 @@
             this.$el.innerHTML = plainToHTML(this.mytext);
             this.$store.subscribe((mutation, state) => {
                 if (mutation.type === 'updateMarkedText') {
-                    console.info('MUTATION!!! ');
+                    //console.info('MUTATION!!! ');
                     //console.info(this.mytext);
                     this.mytext = mutation.payload;
                     let previousPosition = getCaretCharacterOffsetWithin(this.$el);
@@ -103,9 +103,11 @@
 //                        debugger;
 //                    }
 
-                    if (true || allowedPaste || textLengthAfter == textLengthBefore) {
+                    if (allowedPaste || textLengthAfter == textLengthBefore) {
                     //if (!this.$store.getters.waitingForServer) {
-                        this.$el.innerHTML = plainToHTML(this.mytext);
+                        let newText = plainToHTML(this.mytext);
+                        console.info(`@Setting: ${newText}`);
+                        this.$el.innerHTML = newText;
                         // this.$el.innerText.length;
 
                         let selection = window.getSelection();
@@ -128,13 +130,13 @@
             //...Vuex.mapActions(['updateSampleText']),
             update: function(event){
                 //let plainText = getPlainText(event.target.textContent);
-                console.info(event.target.innerHTML);
+                // console.info(event.target.innerHTML);
                 let unescaped = textFromTarget(event.target);
+                console.info(`@Update ${event.target.innerHTML} -> ${unescaped}#, lenght: ${unescaped.length}`);
                 //console.info(`${plainText} -> ${unescaped}`);
 //                if (plainText.includes('  ')) {
 //                    debugger;
 //                }
-                console.info(`@Update ${unescaped}#, lenght: ${unescaped.length}`);
 //                if (event.target.innerText.length != event.target.innerText.trim().length) {
 //                    debugger;
 //                }
