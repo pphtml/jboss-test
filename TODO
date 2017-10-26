@@ -1,6 +1,9 @@
 - expected length
 - line breaks
-- tags in text
+- tags in text - https://stackoverflow.com/questions/2295657/return-positions-of-a-regex-match-in-javascript
+  &gt;
+  &nbsp;
+  &lt;
 - vyska edit boxu
 
 

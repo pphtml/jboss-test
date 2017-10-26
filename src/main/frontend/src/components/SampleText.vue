@@ -20,10 +20,10 @@
         return html.split(/<\/?mark>/).join('');
     }
 
-    function computePlainTextLength(html) {
-        return getPlainText(html).length;
-    }
-
+//    function computePlainTextLength(html) {
+//        return getPlainText(html).length;
+//    }
+//
     function getCaretCharacterOffsetWithin(element) {
         let caretOffset = 0;
         // debugger;
@@ -79,7 +79,14 @@
     }
 
     function plainToHTML(plainText) {
-        return plainText.replace(/ /g, '&nbsp;');
+        let encoded = plainText; // he.encode(plainText);
+        return encoded.replace(/ /g, '&nbsp;');
+    }
+
+    let encode = s => s.replace(/&/g, '&amp;').replace(/ /g, '&nbsp;').replace(/</g, '&lt;');
+
+    function encodeForDiv(source) {
+        return source.replace(/((<\/?mark>)?([\s\S]*?))((?=<\/?mark>)|$)/g, (a, b, c, d)=>`${c||''}${d?encode(d):''}`);
     }
 
     export default {
@@ -90,6 +97,8 @@
                     //console.info('MUTATION!!! ');
                     //console.info(this.mytext);
                     this.mytext = mutation.payload;
+                    let encodedWithMarks = encodeForDiv(this.mytext);
+                    console.info(`RES: ${encodedWithMarks}`);
                     let previousPosition = getCaretCharacterOffsetWithin(this.$el);
                     //console.info(previousPosition);
                     let textLengthBefore = textFromTarget(this.$el).length;
@@ -105,7 +114,7 @@
 
                     if (allowedPaste || textLengthAfter == textLengthBefore) {
                     //if (!this.$store.getters.waitingForServer) {
-                        let newText = plainToHTML(this.mytext);
+                        let newText = encodedWithMarks; // plainToHTML(this.mytext);
                         console.info(`@Setting: ${newText}`);
                         this.$el.innerHTML = newText;
                         // this.$el.innerText.length;
@@ -120,8 +129,7 @@
                             selection.addRange(range);
                         }
                     } else {
-                        console.info(`ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ`);
-                        debugger;
+                        console.info(`ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ ${this.mytext}`);
                     }
                 }
             })

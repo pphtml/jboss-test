@@ -9,7 +9,7 @@ export const store = new Vuex.Store({
     state: {
         regex: '[A-Z]\\w+',
         sampleText: '',
-        markedText: 'Abc   ',
+        markedText: '<mark>Abc</mark>   ',
         waitingForServer: false,
         allowedPasteOps: []
     },
