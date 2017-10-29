@@ -2,6 +2,8 @@
 - line breaks
 - vyska edit boxu
 - expected length
+- pri smazani celyho textu, zmizne kursor
+- na produkci vypnout spousteni webpack procesu
 
 
 http://jsfiddle.net/cpatik/3QAeC/
