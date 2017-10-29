@@ -13,17 +13,23 @@ import javax.inject.Inject;
 import javax.ws.rs.GET;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
+import java.util.logging.Logger;
 
 @Stateless
 public class RegexController {
     @Inject
     private RegexService regexService;
 
+    @Inject
+    Logger logger;
+
     @GET
     @Produces(MediaTypes.JSON_ENCODED)
     public Response<TextMatchResult> markOccurences(@QueryParam("regex") String regex, @QueryParam("text") String text) {
         try {
+            logger.info(String.format("regex: %s, text: %s#", regex, text));
             String maskedText = regexService.markRegexOccurences(regex, text);
+            logger.info(String.format("result: %s#", maskedText));
             return Response.of(new TextMatchResult(maskedText));
         } catch (IllegalArgumentException e) {
             return Response.error(new ProcessingError(ErrorCode.EC_REG_MISSING_ARGUMENT,

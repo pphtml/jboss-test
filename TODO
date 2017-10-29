@@ -1,10 +1,7 @@
-- expected length
+- inicialni regex spocitat (markedText @ store)
 - line breaks
-- tags in text - https://stackoverflow.com/questions/2295657/return-positions-of-a-regex-match-in-javascript
-  &gt;
-  &nbsp;
-  &lt;
 - vyska edit boxu
+- expected length
 
 
 http://jsfiddle.net/cpatik/3QAeC/

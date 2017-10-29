@@ -8,7 +8,7 @@
     <!--&gt;</v-text-field>-->
 
     <div contenteditable="true" class="mono-font sample-text" autocomplete="off" autocorrect="off" autocapitalize="off"
-         spellcheck="false" style="background-color: #eee; overflow: auto; resize: both;" @keyup.stop="update"
+         spellcheck="false" @keyup.stop="update"
     ></div>
 </template>
 
@@ -71,9 +71,13 @@
 
     function textFromTarget(target) {
         //let plainText = getPlainText(target.innerHTML).replace(/\<br\>$/, ' ');
-        let plainText = target.textContent.replace(/\<br\>$/, ' ');
-        let unescaped = he.decode(plainText);
-        return unescaped;
+        //let plainText = target.textContent.replace(/\<br\>$/, ' ');
+        let plainText = target.textContent;
+        let spacesFixed =  plainText.replace(/\u00a0/g, ' ');
+//        console.info(plainText);
+//        let unescaped = he.decode(plainText);
+//        return unescaped;
+        return spacesFixed;
         //var jq = jQuery(target);
         //debugger;
     }
@@ -83,7 +87,7 @@
         return encoded.replace(/ /g, '&nbsp;');
     }
 
-    let encode = s => s.replace(/&/g, '&amp;').replace(/ /g, '&nbsp;').replace(/</g, '&lt;');
+    let encode = s => s.replace(/&/g, '&amp;').replace(/ /g, '&nbsp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 
     function encodeForDiv(source) {
         return source.replace(/((<\/?mark>)?([\s\S]*?))((?=<\/?mark>)|$)/g, (a, b, c, d)=>`${c||''}${d?encode(d):''}`);
@@ -97,7 +101,8 @@
                     //console.info('MUTATION!!! ');
                     //console.info(this.mytext);
                     this.mytext = mutation.payload;
-                    let encodedWithMarks = encodeForDiv(this.mytext);
+                    let spacesUnified = mutation.payload.replace(/\u00a0/g, ' ');
+                    let encodedWithMarks = encodeForDiv(spacesUnified);
                     console.info(`RES: ${encodedWithMarks}`);
                     let previousPosition = getCaretCharacterOffsetWithin(this.$el);
                     //console.info(previousPosition);
@@ -171,5 +176,8 @@
     div {
         min-height: 5em;
         empty-cells: show;
+        background-color: #eee;
+        overflow: auto;
+        resize: both;
     }
 </style>

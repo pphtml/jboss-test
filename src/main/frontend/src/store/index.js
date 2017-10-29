@@ -7,9 +7,9 @@ Vue.use(Vuex)
 
 export const store = new Vuex.Store({
     state: {
-        regex: '[A-Z]\\w+',
+        regex: '[A-Z]\\s+',
         sampleText: '',
-        markedText: '<mark>Abc</mark>   ',
+        markedText: '<mark>A   </mark>',
         waitingForServer: false,
         allowedPasteOps: []
     },
@@ -22,8 +22,11 @@ export const store = new Vuex.Store({
     },
     actions: {
         updateRegex: (state, regex) => {
-            store.commit('updateRegex', regex);
-            store.dispatch('computeMaskedOnServer');
+            let different = store.state.regex != regex;
+            if (different) {
+                store.commit('updateRegex', regex);
+                store.dispatch('computeMaskedOnServer');
+            }
         },
         updateSampleText: (state, expression) => {
             //console.info(`STORE updating: ${expression}, Length: ${expression.length}`);

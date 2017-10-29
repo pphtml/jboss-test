@@ -35,4 +35,10 @@ public class RegexServiceImplTest {
         final String result = regexService.markRegexOccurences("", "Hello world!");
         assertEquals("Hello world!", result);
     }
+
+    @Test
+    public void markRegexWhitespace() throws ComputationExceededException {
+        final String result = regexService.markRegexOccurences("[A-Z]\\s+", "A   ");
+        assertEquals("<mark>A   </mark>", result);
+    }
 }
