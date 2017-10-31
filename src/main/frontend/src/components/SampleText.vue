@@ -124,17 +124,18 @@
                         this.$el.innerHTML = newText;
                         // this.$el.innerText.length;
 
-                        let selection = window.getSelection();
-
-                        let range = createRange(this.$el.parentNode, { count: previousPosition });
-
-                        if (range) {
-                            range.collapse(false);
-                            selection.removeAllRanges();
-                            selection.addRange(range);
+                        if (textLengthAfter > 0) {
+                            let selection = window.getSelection();
+                            let range = createRange(this.$el.parentNode, { count: previousPosition });
+                            if (range) {
+                                range.collapse(false);
+                                selection.removeAllRanges();
+                                selection.addRange(range);
+                            }
                         }
                     } else {
                         console.info(`ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ ${this.mytext}`);
+                        console.info(`Plain text "${plainText}" not allowed`);
                     }
                 }
             })

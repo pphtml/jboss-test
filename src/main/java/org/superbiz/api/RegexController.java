@@ -27,9 +27,9 @@ public class RegexController {
     @Produces(MediaTypes.JSON_ENCODED)
     public Response<TextMatchResult> markOccurences(@QueryParam("regex") String regex, @QueryParam("text") String text) {
         try {
-            logger.info(String.format("regex: %s, text: %s#", regex, text));
+            logger.fine(String.format("regex: %s, text: %s#", regex, text));
             String maskedText = regexService.markRegexOccurences(regex, text);
-            logger.info(String.format("result: %s#", maskedText));
+            logger.fine(String.format("result: %s#", maskedText));
             return Response.of(new TextMatchResult(maskedText));
         } catch (IllegalArgumentException e) {
             return Response.error(new ProcessingError(ErrorCode.EC_REG_MISSING_ARGUMENT,

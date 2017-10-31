@@ -1,9 +1,8 @@
-- inicialni regex spocitat (markedText @ store)
 - line breaks
 - vyska edit boxu
 - expected length
-- pri smazani celyho textu, zmizne kursor
-- na produkci vypnout spousteni webpack procesu
+- inicialni focus na SampleText komponente
+- vyzkouset IE
 
 
 http://jsfiddle.net/cpatik/3QAeC/
@@ -12,7 +11,6 @@ https://jsfiddle.net/nrx9yvw9/5/
 
 - https://codepen.io/supraniti/pen/Lypobx
 - test deploy build
-- testy regex service
 - generate sample data - several variants
 - prihlaseni se
 - http://localhost:9090/api/regex?text=aaaaaaaaaaaaaaaaaaaaaaaaaaX&regex=%5E(a%2B)%2B$     (^(a+)+$)

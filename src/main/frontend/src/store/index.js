@@ -7,9 +7,9 @@ Vue.use(Vuex)
 
 export const store = new Vuex.Store({
     state: {
-        regex: '[A-Z]\\s+',
+        regex: '',
         sampleText: '',
-        markedText: '<mark>A   </mark>',
+        markedText: '',
         waitingForServer: false,
         allowedPasteOps: []
     },
@@ -51,8 +51,10 @@ export const store = new Vuex.Store({
                 });
         }, 100), // ms
         generateSampleData: (state) => {
-            let sampleText = 'First Second third Fourth';
-            store.commit('updateRegex', '[A-Z]\\w+');
+            // let sampleText = 'First Second third Fourth';
+            // store.commit('updateRegex', '[A-Z]\\w+');
+            let sampleText = 'A   ';
+            store.commit('updateRegex', '[A-Z]\\s+');
             store.commit('putAllowedPasteOperation', sampleText);
             store.dispatch('updateSampleText', sampleText);
         },

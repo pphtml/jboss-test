@@ -2,13 +2,18 @@ package org.superbiz.server;
 
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.asset.EmptyAsset;
+import org.superbiz.util.StaticResourceLoader;
 import org.superbiz.util.WebpackProcess;
 import org.wildfly.swarm.Swarm;
 import org.wildfly.swarm.datasources.DatasourcesFraction;
 import org.wildfly.swarm.jaxrs.JAXRSArchive;
 
+import java.io.InputStream;
+import java.util.logging.Logger;
+
 public class JbossTestServer {
     // https://github.com/kissaten/wildfly-swarm-jpa-jaxrs/blob/master/src/main/java/com/example/Main.java
+    // private static final Logger logger = Logger.getLogger(JbossTestServer.class.getName());
 
     public static final String DEFAULT_PORT = "8080";
 
@@ -48,8 +53,11 @@ public class JbossTestServer {
         //new ZipExporterImpl(archive).exportTo(new File("/tmp/test.war"), true);
         container.deploy(archive);
 
-        final Runnable task = () -> { WebpackProcess.runWebpack(); };
-        task.run();
+        //final InputStream isWar = StaticResourceLoader.class.getClassLoader().getResourceAsStream("static/index.html");
+        if (isUsingWebpack()) {
+            final Runnable task = () -> WebpackProcess.runWebpack();
+            task.run();
+        }
     }
 
     private static String getServerPort() {
@@ -69,5 +77,10 @@ public class JbossTestServer {
             throw new RuntimeException("Environment variable or property JDBC_DATABASE_URL not set");
         }
         return url;
+    }
+
+    private static boolean isUsingWebpack() {
+        String isUsingWebpack = System.getProperty("isUsingWebpack", "true");
+        return "true".equalsIgnoreCase(isUsingWebpack);
     }
 }
