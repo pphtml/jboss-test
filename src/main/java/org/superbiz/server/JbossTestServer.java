@@ -44,9 +44,10 @@ public class JbossTestServer {
                 .addPackages( true, "org.superbiz")
                 .addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml")
                 //.addAsWebInfResource(new ClassLoaderAsset("META-INF/persistence.xml", JbossTestServer.class.getClassLoader()), "classes/META-INF/persistence.xml")
-                .addAsWebInfResource(()->JbossTestServer.class.getResourceAsStream("/META-INF/persistence.xml"), "classes/META-INF/persistence.xml");
-//                .addAsResource(()->JbossTestServer.class.getResourceAsStream("/static/index.html"), "/static/index.html")
-//                .addAsResource(()->JbossTestServer.class.getResourceAsStream("/static/css/styles.css"), "/static/css/styles.css");
+                .addAsWebInfResource(()->JbossTestServer.class.getResourceAsStream("/META-INF/persistence.xml"), "classes/META-INF/persistence.xml")
+                .addAsResource(()->JbossTestServer.class.getResourceAsStream("/static/index.html"), "/static/index.html")
+                .addAsResource(()->JbossTestServer.class.getResourceAsStream("/static/dist/build.js"), "/static/dist/build.js")
+                .addAsResource(()->JbossTestServer.class.getResourceAsStream("/static/css/styles.css"), "/static/css/styles.css");
 
                 //.staticContent("static");
         //new ZipExporterImpl(archive).exportTo(new File(archive.getName()), true);

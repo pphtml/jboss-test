@@ -90,3 +90,5 @@ var jq = document.createElement('script');
 jq.src = "https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js";
 document.getElementsByTagName('head')[0].appendChild(jq);
 jQuery.noConflict();
+
+java -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=6006 -DisUsingWebpack=false -jar ./jboss-test-swarm.jar
