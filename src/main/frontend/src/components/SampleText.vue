@@ -72,7 +72,8 @@
     function textFromTarget(target) {
         //let plainText = getPlainText(target.innerHTML).replace(/\<br\>$/, ' ');
         //let plainText = target.textContent.replace(/\<br\>$/, ' ');
-        let plainText = target.textContent;
+        let plainText = target.innerText;
+        //let plainText = target.textContent;
         let spacesFixed =  plainText.replace(/\u00a0/g, ' ');
 //        console.info(plainText);
 //        let unescaped = he.decode(plainText);
@@ -90,7 +91,9 @@
     let encode = s => s.replace(/&/g, '&amp;').replace(/ /g, '&nbsp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 
     function encodeForDiv(source) {
-        return source.replace(/((<\/?mark>)?([\s\S]*?))((?=<\/?mark>)|$)/g, (a, b, c, d)=>`${c||''}${d?encode(d):''}`);
+        let marksSolved = source.replace(/((<\/?mark>)?([\s\S]*?))((?=<\/?mark>)|$)/g, (a, b, c, d)=>`${c||''}${d?encode(d):''}`);
+        let lineBreaksSolved = marksSolved.replace(/\n/g, '<br/>');
+        return lineBreaksSolved;
     }
 
     export default {

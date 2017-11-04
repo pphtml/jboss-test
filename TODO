@@ -1,4 +1,3 @@
-/dist/build.js
 - line breaks
 - vyska edit boxu
 - expected length
@@ -11,7 +10,6 @@ https://jsfiddle.net/Xeoncross/4tUDk/
 https://jsfiddle.net/nrx9yvw9/5/
 
 - https://codepen.io/supraniti/pen/Lypobx
-- test deploy build
 - generate sample data - several variants
 - prihlaseni se
 - http://localhost:9090/api/regex?text=aaaaaaaaaaaaaaaaaaaaaaaaaaX&regex=%5E(a%2B)%2B$     (^(a+)+$)
@@ -91,4 +89,4 @@ jq.src = "https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js";
 document.getElementsByTagName('head')[0].appendChild(jq);
 jQuery.noConflict();
 
-java -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=6006 -DisUsingWebpack=false -jar ./jboss-test-swarm.jar
+java -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=6006 -DdevMode=false -jar ./jboss-test-swarm.jar

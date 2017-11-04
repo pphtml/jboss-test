@@ -9,6 +9,8 @@ import java.nio.file.attribute.BasicFileAttributes;
 import java.util.Date;
 
 public class StaticResourceLoader {
+    private static final boolean devMode = getDevMode();
+
     public static InputSource load(final String path) {
         return load(path, null);
     }
@@ -16,7 +18,7 @@ public class StaticResourceLoader {
     public static InputSource load(final String path, final Date defaultLastModified) {
         final String resourcePath = "/static/" + path;
         final InputStream isFromWar = StaticResourceLoader.class.getClassLoader().getResourceAsStream(resourcePath);
-        if (isFromWar == null) {
+        if (devMode || isFromWar == null) {
             try {
                 final String filename = "src/main/resources" + resourcePath;
                 final InputStream isFromFSSource = new FileInputStream(filename);
@@ -31,5 +33,10 @@ public class StaticResourceLoader {
         } else {
             return new InputSource(isFromWar, defaultLastModified);
         }
+    }
+
+    private static boolean getDevMode() {
+        String devMode = System.getProperty("getDevMode", "true");
+        return "true".equalsIgnoreCase(devMode);
     }
 }

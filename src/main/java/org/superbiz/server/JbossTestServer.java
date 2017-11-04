@@ -2,14 +2,10 @@ package org.superbiz.server;
 
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.asset.EmptyAsset;
-import org.superbiz.util.StaticResourceLoader;
 import org.superbiz.util.WebpackProcess;
 import org.wildfly.swarm.Swarm;
 import org.wildfly.swarm.datasources.DatasourcesFraction;
 import org.wildfly.swarm.jaxrs.JAXRSArchive;
-
-import java.io.InputStream;
-import java.util.logging.Logger;
 
 public class JbossTestServer {
     // https://github.com/kissaten/wildfly-swarm-jpa-jaxrs/blob/master/src/main/java/com/example/Main.java
@@ -47,6 +43,7 @@ public class JbossTestServer {
                 .addAsWebInfResource(()->JbossTestServer.class.getResourceAsStream("/META-INF/persistence.xml"), "classes/META-INF/persistence.xml")
                 .addAsResource(()->JbossTestServer.class.getResourceAsStream("/static/index.html"), "/static/index.html")
                 .addAsResource(()->JbossTestServer.class.getResourceAsStream("/static/dist/build.js"), "/static/dist/build.js")
+                .addAsResource(()->JbossTestServer.class.getResourceAsStream("/static/dist/build.js.map"), "/static/dist/build.js.map")
                 .addAsResource(()->JbossTestServer.class.getResourceAsStream("/static/css/styles.css"), "/static/css/styles.css");
 
                 //.staticContent("static");
@@ -55,7 +52,7 @@ public class JbossTestServer {
         container.deploy(archive);
 
         //final InputStream isWar = StaticResourceLoader.class.getClassLoader().getResourceAsStream("static/index.html");
-        if (isUsingWebpack()) {
+        if (getDevMode()) {
             final Runnable task = () -> WebpackProcess.runWebpack();
             task.run();
         }
@@ -80,8 +77,8 @@ public class JbossTestServer {
         return url;
     }
 
-    private static boolean isUsingWebpack() {
-        String isUsingWebpack = System.getProperty("isUsingWebpack", "true");
-        return "true".equalsIgnoreCase(isUsingWebpack);
+    private static boolean getDevMode() {
+        String devMode = System.getProperty("getDevMode", "true");
+        return "true".equalsIgnoreCase(devMode);
     }
 }

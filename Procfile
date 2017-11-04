@@ -1,1 +1,1 @@
-web: java $JAVA_OPTS -Dswarm.http.port=$PORT -DisUsingWebpack=false -jar ./target/jboss-test-swarm.jar
+web: java $JAVA_OPTS -Dswarm.http.port=$PORT -DdevMode=false -jar ./target/jboss-test-swarm.jar
